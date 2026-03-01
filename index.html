@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WAC vs RSB - Billetterie</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Home Page -->
+        <section id="home-page" class="page active">
+            <div class="home-header">
+                <button class="my-tickets-btn" id="my-tickets-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+                        <path d="M13 5v2M13 17v2M13 11v2"/>
+                    </svg>
+                    <span>Mes Tickets</span>
+                </button>
+                <div class="match-teams">
+                    <div class="team">
+                        <img class="team-logo-img" src="https://postimg.cc/bDMLJh6X" alt="WAC Logo">
+                        <span class="team-name">WAC</span>
+                    </div>
+                    <div class="vs">VS</div>
+                    <div class="team">
+                        <img class="team-logo-img" src="https://postimg.cc/Lq8V3Xw2" alt="RSB Logo">
+                        <span class="team-name">RSB</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="match-info">
+                <div class="match-date">
+                    <span class="label">Date</span>
+                    <span class="value">01 Mars 2026 – 22:00</span>
+                </div>
+                <div class="match-stadium">
+                    <span class="label">Stade</span>
+                    <span class="value">COMPLEXE MOHAMMED V</span>
+                </div>
+            </div>
+
+            <div class="countdown-container">
+                <div class="countdown-label">Match starts in</div>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-text">Jours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-text">Heures</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-text">Min</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-text">Sec</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary" id="buy-ticket-btn" data-match="WACvsRSB">Acheter un Ticket</button>
+
+            <!-- Events Section -->
+            <div class="events-section">
+                <h2 class="events-title">Événements</h2>
+
+                <!-- Event 1: WAC vs RSB -->
+                <div class="match-banner" data-match="WACvsRSB">
+                    <div class="banner-content">
+                        <div class="banner-header">
+                            <span class="journee">JOURNÉE 10</span>
+                        </div>
+                        <div class="banner-teams">
+                            <div class="banner-team banner-team-left">
+                                <img src="https://postimg.cc/bDMLJh6X" alt="WAC">
+                                <span>WAC</span>
+                            </div>
+                            <div class="banner-vs">VS</div>
+                            <div class="banner-team banner-team-right">
+                                <img src="https://postimg.cc/Lq8V3Xw2" alt="RSB">
+                                <span>RSB</span>
+                            </div>
+                        </div>
+                        <div class="banner-date">
+                            <span class="match-datetime">Dimanche 01/03/2026 – 22:00</span>
+                        </div>
+                    </div>
+                    <div class="banner-footer">
+                        <span class="debute-label">Débute le 01-03-2029</span>
+                    </div>
+                    <button class="btn-event" data-match="WACvsRSB">Acheter un Ticket</button>
+                </div>
+
+                <!-- Event 2: WAC vs ASFAR -->
+                <div class="match-banner" data-match="WACvsAsfar">
+                    <div class="banner-content">
+                        <div class="banner-header">
+                            <span class="journee">MATCH</span>
+                        </div>
+                        <div class="banner-teams">
+                            <div class="banner-team banner-team-left">
+                                <img src="https://postimg.cc/bDMLJh6X" alt="WAC">
+                                <span>WAC</span>
+                            </div>
+                            <div class="banner-vs">VS</div>
+                            <div class="banner-team banner-team-right">
+                                <img src="https://postimg.cc/NLYD6hW4" alt="ASFAR">
+                                <span>ASFAR</span>
+                            </div>
+                        </div>
+                        <div class="banner-date">
+                            <span class="match-datetime">Mercredi 04/03/2026 – 22:00</span>
+                        </div>
+                    </div>
+                    <div class="banner-footer">
+                        <span class="debute-label">Débute le 04-03-2026</span>
+                    </div>
+                    <button class="btn-event" data-match="WACvsAsfar">Acheter un Ticket</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seat Selection Page -->
+        <section id="seat-page" class="page">
+            <div class="page-header">
+                <button class="back-btn" id="back-to-home">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <h1>Sélectionner Place</h1>
+            </div>
+
+            <div class="zones-container">
+                <div class="zone" data-zone="1">
+                    <div class="zone-header">
+                        <span class="zone-name">ZONE 1</span>
+                        <span class="zone-price">500 MAD</span>
+                    </div>
+                    <div class="seats-grid">
+                        <button class="seat unavailable" data-seat="A1">A1</button>
+                        <button class="seat unavailable" data-seat="A2">A2</button>
+                        <button class="seat unavailable" data-seat="A3">A3</button>
+                        <button class="seat unavailable" data-seat="A4">A4</button>
+                        <button class="seat unavailable" data-seat="A5">A5</button>
+                        <button class="seat unavailable" data-seat="A6">A6</button>
+                    </div>
+                </div>
+
+                <div class="zone" data-zone="2">
+                    <div class="zone-header">
+                        <span class="zone-name">ZONE 2</span>
+                        <span class="zone-price">350 MAD</span>
+                    </div>
+                    <div class="seats-grid">
+                        <button class="seat unavailable" data-seat="B1">B1</button>
+                        <button class="seat unavailable" data-seat="B2">B2</button>
+                        <button class="seat unavailable" data-seat="B3">B3</button>
+                        <button class="seat unavailable" data-seat="B4">B4</button>
+                        <button class="seat unavailable" data-seat="B5">B5</button>
+                        <button class="seat unavailable" data-seat="B6">B6</button>
+                    </div>
+                </div>
+
+                <div class="zone" data-zone="3">
+                    <div class="zone-header">
+                        <span class="zone-name">ZONE 3</span>
+                        <span class="zone-price">200 MAD</span>
+                    </div>
+                    <div class="seats-grid">
+                        <button class="seat unavailable" data-seat="C1">C1</button>
+                        <button class="seat unavailable" data-seat="C2">C2</button>
+                        <button class="seat unavailable" data-seat="C3">C3</button>
+                        <button class="seat unavailable" data-seat="C4">C4</button>
+                        <button class="seat unavailable" data-seat="C5">C5</button>
+                        <button class="seat unavailable" data-seat="C6">C6</button>
+                    </div>
+                </div>
+
+                <div class="zone" data-zone="4">
+                    <div class="zone-header">
+                        <span class="zone-name">ZONE 4</span>
+                        <span class="zone-price">60 MAD</span>
+                    </div>
+                    <div class="seats-grid">
+                        <button class="seat available" data-seat="AE1">AE1</button>
+                        <button class="seat available" data-seat="AE2">AE2</button>
+                        <button class="seat available" data-seat="AE3">AE3</button>
+                        <button class="seat available" data-seat="AE4">AE4</button>
+                        <button class="seat available" data-seat="AE49" data-zone="4">AE49</button>
+                        <button class="seat available" data-seat="AE50">AE50</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="selection-summary" id="selection-summary" style="display: none;">
+                <div class="selected-seat-info">
+                    <span>Place sélectionnée:</span>
+                    <span class="selected-seat" id="selected-seat-display">-</span>
+                </div>
+                <div class="selected-price">
+                    <span>Prix:</span>
+                    <span class="price" id="selected-price">- MAD</span>
+                </div>
+            </div>
+
+            <button class="btn-primary" id="continue-to-payment" disabled>Continuer</button>
+        </section>
+
+        <!-- Payment Page -->
+        <section id="payment-page" class="page">
+            <div class="page-header">
+                <button class="back-btn" id="back-to-seats">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <h1>Paiement</h1>
+            </div>
+
+            <div class="payment-content">
+                <div class="payment-summary">
+                    <h2>Récapitulatif</h2>
+                    <div class="summary-row">
+                        <span>Match</span>
+                        <span id="payment-match">WAC vs RSB</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Place</span>
+                        <span id="payment-seat">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Zone</span>
+                        <span id="payment-zone">-</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="payment-price">- MAD</span>
+                    </div>
+                </div>
+
+                <div class="payment-form">
+                    <div class="form-group">
+                        <label>Numéro de carte</label>
+                        <input type="text" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Expiry</label>
+                            <input type="text" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="text" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Nom du titulaire</label>
+                        <input type="text" placeholder="JOHN DOE">
+                    </div>
+                </div>
+
+                <button class="btn-primary" id="pay-btn">Payer Maintenant</button>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div class="loading-overlay" id="loading-overlay">
+                <div class="spinner"></div>
+                <p>Traitement en cours...</p>
+            </div>
+
+            <!-- Success Overlay -->
+            <div class="success-overlay" id="success-overlay">
+                <div class="success-animation">
+                    <svg class="checkmark" viewBox="0 0 52 52">
+                        <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                </div>
+                <p>Paiement réussi!</p>
+                <span class="ticket-id" id="ticket-id-display"></span>
+            </div>
+        </section>
+
+        <!-- Ticket Detail Page -->
+        <section id="ticket-page" class="page">
+            <div class="ticket-header">
+                <button class="back-btn" id="back-to-ticket">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <div class="header-content">
+                    <svg class="ticket-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+                        <path d="M13 5v2M13 17v2M13 11v2"/>
+                    </svg>
+                    <h1>Détail du Ticket</h1>
+                </div>
+                <button class="power-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18.36 6.64a9 9 0 1 1-12.73 0"/>
+                        <line x1="12" y1="2" x2="12" y2="12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <div class="ticket-content">
+                <div class="countdown-simple">
+                    <svg class="clock-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <span class="countdown-text" id="simple-countdown">5h 26min 50s</span>
+                </div>
+
+                <div class="match-section">
+                    <div class="match-teams">
+                        <span class="match-team" id="ticket-home-team">WAC</span>
+                        <span class="match-vs">VS</span>
+                        <span class="match-team" id="ticket-away-team">RSB</span>
+                    </div>
+                    <div class="match-details">
+                        <span id="ticket-match-date">01-03-2026 à 22h</span>
+                        <span>COMPLEXE MOHAMMED V</span>
+                    </div>
+                </div>
+
+                <div class="ticket-card">
+                    <div class="ticket-category">
+                        <span class="category-label">Catégorie : </span>
+                        <span class="category-value" id="ticket-zone">ZONE 4</span>
+                    </div>
+
+                    <div class="ticket-qr" id="qr-code"></div>
+                </div>
+
+                <div class="ticket-details">
+                    <div class="detail-item">
+                        <svg class="detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/>
+                        </svg>
+                        <span class="detail-label">Porte</span>
+                        <span class="detail-value" id="ticket-porte">I</span>
+                    </div>
+                    <div class="detail-item">
+                        <svg class="detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/>
+                        </svg>
+                        <span class="detail-label">Accès</span>
+                        <span class="detail-value" id="ticket-acces">I</span>
+                    </div>
+                    <div class="detail-item">
+                        <svg class="detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        </svg>
+                        <span class="detail-label">Bloc</span>
+                        <span class="detail-value" id="ticket-bloc">14</span>
+                    </div>
+                    <div class="detail-item">
+                        <svg class="detail-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9 22 9 12 15 12 15 22"/>
+                        </svg>
+                        <span class="detail-label">Place</span>
+                        <span class="detail-value" id="ticket-place">AE49</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- My Tickets Page -->
+        <section id="my-tickets-page" class="page">
+            <div class="page-header">
+                <button class="back-btn" id="back-to-home-from-tickets">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M19 12H5M12 19l-7-7 7-7"/>
+                    </svg>
+                </button>
+                <h1>Mes Tickets</h1>
+            </div>
+
+            <div class="my-tickets-container" id="my-tickets-container">
+                <!-- Tickets will be dynamically loaded here -->
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
